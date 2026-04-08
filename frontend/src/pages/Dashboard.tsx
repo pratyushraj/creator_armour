@@ -34,36 +34,45 @@ export function Dashboard() {
 
     // Authentication is now handled by ProtectedRoute
 
-    // Mock deals data for demo
-    const mockDeals: Deal[] = [
-        {
-            id: '1',
-            creator_id: '1',
-            brand_name: 'Glow Skincare',
-            brand_email: 'hello@glowskincare.com',
-            status: 'content_creation',
-            budget: 500,
-            deliverables: '1 Instagram Reel + 3 Stories',
-            deadline: '2024-02-15',
-            created_at: '2024-01-20T10:00:00Z',
-            updated_at: '2024-01-25T14:30:00Z',
-        },
-        {
-            id: '2',
-            creator_id: '1',
-            brand_name: 'Tech Gadgets Co',
-            brand_email: 'marketing@techgadgets.com',
-            status: 'payment_pending',
-            budget: 800,
-            deliverables: '2 Instagram Posts + 1 Reel',
-            deadline: '2024-01-30',
-            created_at: '2024-01-10T09:00:00Z',
-            updated_at: '2024-01-28T16:00:00Z',
-        },
-    ]
-
+    // For new users, start with empty deals array
+    // Mock data is only for demo purposes and should be removed in production
     useEffect(() => {
-        setDeals(mockDeals)
+        // Only load mock data if explicitly requested (for demo)
+        // In production, this would fetch from API
+        const shouldShowMockData = localStorage.getItem('showMockData') === 'true'
+        
+        if (shouldShowMockData) {
+            const mockDeals: Deal[] = [
+                {
+                    id: '1',
+                    creator_id: '1',
+                    brand_name: 'Glow Skincare',
+                    brand_email: 'hello@glowskincare.com',
+                    status: 'content_creation',
+                    budget: 500,
+                    deliverables: '1 Instagram Reel + 3 Stories',
+                    deadline: '2024-02-15',
+                    created_at: '2024-01-20T10:00:00Z',
+                    updated_at: '2024-01-25T14:30:00Z',
+                },
+                {
+                    id: '2',
+                    creator_id: '1',
+                    brand_name: 'Tech Gadgets Co',
+                    brand_email: 'marketing@techgadgets.com',
+                    status: 'payment_pending',
+                    budget: 800,
+                    deliverables: '2 Instagram Posts + 1 Reel',
+                    deadline: '2024-01-30',
+                    created_at: '2024-01-10T09:00:00Z',
+                    updated_at: '2024-01-28T16:00:00Z',
+                },
+            ]
+            setDeals(mockDeals)
+        } else {
+            // New users start with empty deals
+            setDeals([])
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setDeals])
 
