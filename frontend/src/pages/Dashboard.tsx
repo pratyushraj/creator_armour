@@ -32,11 +32,7 @@ export function Dashboard() {
         isAuthenticated
     } = useStore()
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            navigate('/login')
-        }
-    }, [isAuthenticated, navigate])
+    // Authentication is now handled by ProtectedRoute
 
     // Mock deals data for demo
     const mockDeals: Deal[] = [
@@ -110,9 +106,6 @@ export function Dashboard() {
     // Prioritize offers - highest budget first
     const sortedNewOffers = [...newOffers].sort((a, b) => b.budget - a.budget)
 
-    if (!isAuthenticated || !user || !creator) {
-        return null
-    }
 
     return (
         <div className="min-h-screen bg-gradient-premium pb-24">
