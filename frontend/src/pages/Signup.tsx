@@ -55,6 +55,7 @@ export function Signup() {
                         name: formData.name,
                         instagram_handle: formData.instagramHandle.replace('@', ''),
                     },
+                    emailRedirectTo: window.location.origin + '/dashboard',
                 },
             })
 
@@ -63,6 +64,13 @@ export function Signup() {
             }
 
             if (data.user) {
+                // Check if email confirmation is required
+                if (!data.user.email_confirmed_at) {
+                    setError('Please check your email to confirm your account before logging in.')
+                    setIsLoading(false)
+                    return
+                }
+                
                 setUser({
                     id: data.user.id,
                     email: data.user.email || '',

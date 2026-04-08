@@ -28,6 +28,10 @@ export function Login() {
             })
 
             if (authError) {
+                // Check for email confirmation error
+                if (authError.message.includes('Email not confirmed') || authError.message.includes('invalid_credentials')) {
+                    throw new Error('Please confirm your email address before logging in. Check your inbox for the confirmation link.')
+                }
                 throw authError
             }
 
