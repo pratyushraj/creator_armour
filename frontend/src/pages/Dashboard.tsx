@@ -320,44 +320,44 @@ export function Dashboard() {
                         {activeDeals.map((deal) => {
                             const isOverdue = deal.deadline && new Date(deal.deadline) < new Date()
                             return (
-                             <Card
-                                 key={deal.id}
-                                 hover
-                                 variant="elevated"
-                                 onClick={() => navigate(`/deal/${deal.id}`)}
-                                 padding="sm"
-                                 className={`group cursor-pointer ${isOverdue ? 'border-red-300 bg-red-50' : 'border-white'}`}
-                             >
-                                 <div className="flex items-start justify-between">
-                                     <div className="flex-1">
-                                         <div className="flex items-center gap-2 mb-2">
-                                             <h3 className="font-semibold text-gray-900">{deal.brand_name}</h3>
-                                             <StatusBadge status={deal.status} size="sm" />
-                                             {isOverdue && (
-                                                 <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full font-medium">
-                                                     Overdue
-                                                 </span>
-                                             )}
-                                         </div>
-                                         <p className="text-sm text-gray-500 mb-2">{deal.deliverables}</p>
-                                         <div className="flex items-center gap-4 text-xs text-gray-400">
-                                             <span className="font-semibold text-primary-600">
-                                                 {formatCurrency(deal.budget)}
-                                             </span>
-                                             {deal.deadline && (
-                                                 <span className={`flex items-center gap-1 ${isOverdue ? 'text-red-600 font-medium' : ''}`}>
-                                                     <Clock className="w-3 h-3" />
-                                                     {isOverdue ? 'Overdue!' : `Due ${new Date(deal.deadline).toLocaleDateString()}`}
-                                                 </span>
-                                             )}
-                                         </div>
-                                     </div>
-                                     <ArrowUpRight className="w-5 h-5 text-gray-400" />
-                                 </div>
-                             </Card>
-                             )
-                         )}
-                     </div>
+                                <Card
+                                    key={deal.id}
+                                    hover
+                                    variant="elevated"
+                                    onClick={() => navigate(`/deal/${deal.id}`)}
+                                    padding="sm"
+                                    className={`group cursor-pointer ${isOverdue ? 'border-red-300 bg-red-50' : 'border-white'}`}
+                                >
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <h3 className="font-semibold text-gray-900">{deal.brand_name}</h3>
+                                                <StatusBadge status={deal.status} size="sm" />
+                                                {isOverdue && (
+                                                    <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full font-medium">
+                                                        Overdue
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className="text-sm text-gray-500 mb-2">{deal.deliverables}</p>
+                                            <div className="flex items-center gap-4 text-xs text-gray-400">
+                                                <span className="font-semibold text-primary-600">
+                                                    {formatCurrency(deal.budget)}
+                                                </span>
+                                                {deal.deadline && (
+                                                    <span className={`flex items-center gap-1 ${isOverdue ? 'text-red-600 font-medium' : ''}`}>
+                                                        <Clock className="w-3 h-3" />
+                                                        {isOverdue ? 'Overdue!' : `Due ${new Date(deal.deadline).toLocaleDateString()}`}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <ArrowUpRight className="w-5 h-5 text-gray-400" />
+                                    </div>
+                                </Card>
+                            )
+                        })}
+                    </div>
 
                     {activeDeals.length === 0 && newOffers.length === 0 && (
                         <Card className="text-center py-8">
