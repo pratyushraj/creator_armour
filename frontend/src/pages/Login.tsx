@@ -9,7 +9,7 @@ import { supabase } from '../lib/supabase'
 
 export function Login() {
     const navigate = useNavigate()
-    const { setUser, setIsLoading, isLoading } = useStore()
+    const { setUser, setCreator, setIsLoading, isLoading } = useStore()
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -41,6 +41,16 @@ export function Login() {
                     email: data.user.email || '',
                     name: data.user.user_metadata?.name || '',
                 })
+                
+                setCreator({
+                    id: data.user.id,
+                    user_id: data.user.id,
+                    name: data.user.user_metadata?.name || '',
+                    instagram_handle: data.user.user_metadata?.instagram_handle || '',
+                    collab_link: '',
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
+                } as any)
                 navigate('/dashboard')
             }
         } catch (err) {

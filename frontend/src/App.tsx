@@ -11,7 +11,9 @@ import {
     PrivacyPolicy,
     BrandDashboard,
     Settings,
-    Analytics
+    Analytics,
+    Deals,
+    Notifications
 } from './pages'
 import { useStore } from './store/useStore'
 
@@ -28,7 +30,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 function AppContent() {
     const location = useLocation()
-    const showBottomNav = ['/dashboard', '/deal', '/profile', '/settings', '/analytics'].some(path => location.pathname.startsWith(path))
+    const showBottomNav = ['/dashboard', '/deal', '/profile', '/settings', '/analytics', '/deals', '/notifications'].some(path => location.pathname.startsWith(path))
     
     return (
         <>
@@ -58,7 +60,17 @@ function AppContent() {
                 } />
                 <Route path="/profile" element={
                     <ProtectedRoute>
-                        <Dashboard />
+                        <Settings />
+                    </ProtectedRoute>
+                } />
+                <Route path="/deals" element={
+                    <ProtectedRoute>
+                        <Deals />
+                    </ProtectedRoute>
+                } />
+                <Route path="/notifications" element={
+                    <ProtectedRoute>
+                        <Notifications />
                     </ProtectedRoute>
                 } />
                 <Route path="/settings" element={

@@ -9,7 +9,7 @@ import { supabase } from '../lib/supabase'
 
 export function Signup() {
     const navigate = useNavigate()
-    const { setUser, setIsLoading, isLoading } = useStore()
+    const { setUser, setCreator, setIsLoading, isLoading } = useStore()
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -75,6 +75,15 @@ export function Signup() {
                     email: data.user.email || '',
                     name: data.user.user_metadata?.name || '',
                 })
+                setCreator({
+                    id: data.user.id,
+                    user_id: data.user.id,
+                    name: data.user.user_metadata?.name || formData.name,
+                    instagram_handle: data.user.user_metadata?.instagram_handle || formData.instagramHandle.replace('@', ''),
+                    collab_link: '',
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
+                } as any)
                 navigate('/dashboard')
             }
         } catch (err) {
@@ -115,6 +124,7 @@ export function Signup() {
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             required
+                            tabIndex={1}
                             className="bg-background-surface border-border-standard text-text-primary"
                         />
 
@@ -125,6 +135,7 @@ export function Signup() {
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             required
+                            tabIndex={2}
                             className="bg-background-surface border-border-standard text-text-primary"
                         />
 
@@ -134,6 +145,7 @@ export function Signup() {
                             value={formData.instagramHandle}
                             onChange={(e) => setFormData({ ...formData, instagramHandle: e.target.value })}
                             required
+                            tabIndex={3}
                             helperText="Your collaboration link will be: creatorarmour.com/yourhandle"
                             className="bg-background-surface border-border-standard text-text-primary"
                         />
@@ -146,6 +158,7 @@ export function Signup() {
                             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                             required
                             minLength={8}
+                            tabIndex={4}
                             className="bg-background-surface border-border-standard text-text-primary"
                         />
 
@@ -157,6 +170,7 @@ export function Signup() {
                             type="submit" 
                             fullWidth 
                             isLoading={isLoading} 
+                            tabIndex={5}
                             size="lg"
                             className="bg-brand-indigo hover:bg-brand-accent text-text-primary rounded-comfortable"
                         >

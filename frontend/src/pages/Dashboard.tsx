@@ -198,26 +198,34 @@ export function Dashboard() {
                 <Card className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white shadow-xl border-none relative overflow-hidden">
                     <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                     <div className="relative z-10">
-                    <CardHeader>
-                        <CardTitle className="text-white flex items-center gap-2">
-                            <Sparkles className="w-5 h-5 text-yellow-400" />
-                            Your Collaboration Link
-                        </CardTitle>
-                        <CardDescription className="text-slate-300">
-                            Share this link with brands to receive clear offers — no more confusing DMs
-                        </CardDescription>
-                    </CardHeader>
-                    <div className="flex items-center gap-2 mt-4">
-                        <div className="flex-1 bg-white/10 backdrop-blur-md rounded-xl px-4 py-3 text-sm font-mono truncate border border-white/10">
-                            {collabLink}
+                        <CardHeader>
+                            <CardTitle className="text-white flex items-center gap-2">
+                                <Sparkles className="w-5 h-5 text-yellow-400" />
+                                Your Collaboration Link
+                            </CardTitle>
+                            <CardDescription className="text-slate-300">
+                                {creator?.instagram_handle ? 'Share this link with brands to receive clear offers — no more confusing DMs' : 'Please complete your profile by setting an Instagram handle to generate your link.'}
+                            </CardDescription>
+                        </CardHeader>
+                        <div className="flex items-center gap-2 mt-4 px-6 pb-6">
+                            {creator?.instagram_handle ? (
+                                <>
+                                    <div className="flex-1 bg-white/10 backdrop-blur-md rounded-xl px-4 py-3 text-sm font-mono truncate border border-white/10">
+                                        {collabLink}
+                                    </div>
+                                    <Button variant="secondary" size="sm" onClick={copyLink} className="bg-white/10 text-white hover:bg-white/20 border-white/10">
+                                        <Copy className="w-4 h-4" />
+                                    </Button>
+                                    <Button variant="secondary" size="sm" onClick={shareLink} className="bg-white/10 text-white hover:bg-white/20 border-white/10">
+                                        <Share2 className="w-4 h-4" />
+                                    </Button>
+                                </>
+                            ) : (
+                                <Button variant="secondary" className="w-full bg-white/10 text-white hover:bg-white/20 border-white/10" onClick={() => navigate('/settings')}>
+                                    Set up your handle
+                                </Button>
+                            )}
                         </div>
-                        <Button variant="secondary" size="sm" onClick={copyLink} className="bg-white/10 text-white hover:bg-white/20 border-white/10">
-                            <Copy className="w-4 h-4" />
-                        </Button>
-                        <Button variant="secondary" size="sm" onClick={shareLink} className="bg-white/10 text-white hover:bg-white/20 border-white/10">
-                            <Share2 className="w-4 h-4" />
-                        </Button>
-                    </div>
                     </div>
                 </Card>
 

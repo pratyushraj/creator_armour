@@ -36,13 +36,7 @@ export function BottomNav() {
                         <button
                             key={item.path}
                             onClick={() => {
-                                if (item.path === '/deals' || item.path === '/notifications') {
-                                    // For now, navigate to dashboard since these pages don't exist yet
-                                    // In production, these would navigate to actual pages
-                                    navigate('/dashboard')
-                                } else {
-                                    navigate(item.path)
-                                }
+                                navigate(item.path)
                             }}
                             className={cn(
                                 'flex flex-col items-center justify-center py-3 px-4 min-h-[56px]',
