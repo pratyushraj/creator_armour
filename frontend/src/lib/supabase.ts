@@ -5,13 +5,17 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// API base URL for backend
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+// API base URL for backend (optional - can use Supabase directly)
+export const API_URL = import.meta.env.VITE_API_URL || ''
 
 export async function fetchAPI<T>(
     endpoint: string,
     options?: RequestInit
 ): Promise<T> {
+    if (!API_URL) {
+        throw new Error('API_URL not configured')
+    }
+    
     const response = await fetch(`${API_URL}${endpoint}`, {
         ...options,
         headers: {

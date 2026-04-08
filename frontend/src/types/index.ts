@@ -2,8 +2,8 @@ export interface User {
     id: string;
     email: string;
     name: string;
-    role: 'creator' | 'brand';
-    created_at: string;
+    role?: 'creator' | 'brand';
+    created_at?: string;
 }
 
 export interface Creator {
