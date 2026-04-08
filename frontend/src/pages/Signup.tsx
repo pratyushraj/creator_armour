@@ -55,7 +55,6 @@ export function Signup() {
                         name: formData.name,
                         instagram_handle: formData.instagramHandle.replace('@', ''),
                     },
-                    emailRedirectTo: window.location.origin + '/dashboard',
                 },
             })
 
