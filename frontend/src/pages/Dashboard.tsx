@@ -114,16 +114,16 @@ export function Dashboard() {
                 <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">
-                            {creator.name.charAt(0).toUpperCase()}
+                            {creator?.name?.charAt(0).toUpperCase() || 'C'}
                         </div>
                         <div>
                             <div className="flex items-center gap-2">
-                                <h1 className="font-semibold text-gray-900">{creator.name}</h1>
+                                <h1 className="font-semibold text-gray-900">{creator?.name || 'Creator'}</h1>
                                 <span className="flex items-center gap-1 text-primary-600" title="Verified Creator">
                                     <CheckCircle className="w-4 h-4" />
                                 </span>
                             </div>
-                            <p className="text-sm text-gray-500">@{creator.instagram_handle}</p>
+                            <p className="text-sm text-gray-500">@{creator?.instagram_handle || 'username'}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
